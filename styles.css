@@ -1,0 +1,168 @@
+/* General Styling */
+body {
+  margin: 0;
+  font-family: "Josefin Sans", Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 20px;
+  background-color: transparent; /* Default */
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 40px;
+  font-weight: light;
+  font-size: 1.35rem;
+  /* font-family: "Playfair Display", serif; */
+}
+
+/* Background change for navbar */
+.navbar.scrolled {
+  background-color: #333;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-align: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("./assets/herobg.jpg") no-repeat center center/cover;
+  opacity: 0.9;
+  z-index: -1;
+}
+
+.hero-content .cta-button {
+  margin-top: 20px;
+  padding: 20px 50px;
+  font-family: "Josefin Sans", Arial, sans-serif;
+  background-color: #dd2642a9;
+  color: white;
+  text-decoration: none; /* Removes underline */
+  border: none; /* Removes any border */
+  display: inline-block; /* Ensures it acts like a button */
+  font-size: 1.2rem; /* Adjust as needed */
+  cursor: pointer;
+  transition: padding 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  /* border-radius: 5px; Adds rounded corners */
+}
+
+.hero-content .cta-button:hover {
+  padding: 22px 52px; /* Slightly increased padding */
+  transform: scale(1.05); /* Grows the button slightly */
+  /* background-color: #555; Optional: Adds hover effect */
+}
+
+.hero-content h2 {
+  color: #dd2642a9;
+  font-weight: lighter;
+  font-size: 3.5rem;
+  font-family: "Playfair Display", serif;
+}
+
+.hero-content p {
+  margin-top: auto;
+  color: white;
+  font-size: 1.7rem;
+  max-width: 600px;
+}
+/* Other section styles remain the same */
+
+/* About Us Section */
+.about {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.barber-photo {
+  width: 300px;
+  border-radius: 10px;
+}
+
+/* Reviews Section */
+.reviews {
+  padding: 40px;
+  text-align: center;
+}
+
+.review-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-item {
+  width: 30%;
+  text-align: center;
+}
+
+.review-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Services Section */
+.services {
+  padding: 40px;
+  text-align: center;
+}
+
+.service-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.service-item {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+/* Contact Section */
+.contact {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+.contact-info,
+.hours-table {
+  width: 45%;
+}
