@@ -994,3 +994,38 @@ body {
     font-size: 1.5rem;
   }
 }
+
+/* Footer */
+.footer {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(221, 38, 66, 0.1),
+    transparent
+  );
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: #666;
+  font-family: "Josefin Sans", Arial, sans-serif;
+}
+
+.copyright p {
+  margin: 0;
+  padding: 10px;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .footer {
+    padding: 15px;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
