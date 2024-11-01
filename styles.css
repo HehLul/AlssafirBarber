@@ -141,7 +141,7 @@ body {
 blockquote {
   font-size: 1.3rem;
   padding: 15px; /* Add padding to the blockquote */
-  background-color: #e9ecef; /* Light grey background for reviews */
+  /* background-color: #e9ecef; Light grey background for reviews */
   border-radius: 5px; /* Slightly rounded corners */
   margin: 10px 0; /* Add margin to separate it from the rest */
 }
@@ -155,11 +155,15 @@ blockquote {
 .review-item {
   width: 300px;
   text-align: center;
-  padding: 10px; /* Padding for each review item */
+  padding: 20px; /* Padding for each review item */
   margin: 10px; /* Margin around each review item */
   background-color: #fff; /* White background for review items */
   border-radius: 8px; /* Slightly rounded corners */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.stars {
+  width: 100px;
 }
 
 .review-photo {
@@ -169,23 +173,46 @@ blockquote {
   margin-bottom: 10px;
 }
 
-/* Services Section */
+/* Our Services Section */
 .services {
-  padding: 40px;
+  padding: 40px; /* Reduced padding */
   text-align: center;
+  background-color: white; /* Light background color */
+}
+
+.services h2 {
+  font-size: 2rem; /* Reduced heading size */
+  margin-bottom: 30px; /* Reduced space below the heading */
 }
 
 .service-list {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  display: grid; /* Changed to grid layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  gap: 1.5rem; /* Reduced space between items */
 }
 
 .service-item {
-  flex: 1;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  background: #dd2642a9; /* Background color for each service item */
+  padding: 2rem; /* Reduced padding inside each item */
+  border-radius: 1rem; /* Reduced border radius */
+  text-align: center;
+  border: 1rem solid white; /* Reduced border size */
+  transition: border-color 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+
+.service-item:hover {
+  border-color: var(--main-color); /* Change border color on hover */
+  transform: scale(1.02); /* Slightly grow the item on hover */
+}
+
+.service-item h3 {
+  font-size: 2rem; /* Reduced title size */
+  color: white; /* Text color */
+}
+
+.service-item p {
+  font-size: 1.4rem; /* Reduced description size */
+  margin: 1rem 0 2rem; /* Reduced margin for spacing */
 }
 
 /* Contact Section */
