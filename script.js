@@ -54,3 +54,38 @@ window.addEventListener("scroll", function () {
     }
   });
 });
+
+function openDialog() {
+  const dialog = document.getElementById("bookingDialog");
+  document.body.style.overflow = "hidden"; // Prevent background scrolling
+  dialog.classList.add("active");
+}
+
+function closeDialog() {
+  const dialog = document.getElementById("bookingDialog");
+  document.body.style.overflow = ""; // Restore scrolling
+  dialog.classList.remove("active");
+}
+
+// Close dialog when clicking outside
+document
+  .getElementById("bookingDialog")
+  .addEventListener("click", function (e) {
+    if (e.target === this) {
+      closeDialog();
+    }
+  });
+
+// Prevent closing when clicking inside dialog content
+document
+  .querySelector(".dialog-content")
+  .addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+
+// Close on escape key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closeDialog();
+  }
+});

@@ -182,6 +182,33 @@
       </div>
     </section>
 
-    <script src="script.js"></script>
+    <!-- Add this right before the closing body tag -->
+    <div class="dialog-overlay" id="bookingDialog">
+      <div class="dialog-content">
+        <div class="dialog-header">
+          <h2>Book Your Appointment</h2>
+          <button class="close-dialog" onclick="closeDialog()">&times;</button>
+        </div>
+        <div class="dialog-body">
+          <p>
+            Ready to get your fresh cut? Call us now to book your appointment!
+          </p>
+          <div class="phone-number">
+            <span>(226) 260-2939</span>
+          </div>
+          <p class="availability-note">Available during business hours</p>
+          <div class="dialog-buttons">
+            <a href="tel:+12262602939" class="call-button">
+              <span class="phone-icon">📞</span>
+              Call Now
+            </a>
+            <button class="secondary-button" onclick="closeDialog()">
+              Maybe Later
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+  <script src="script.js"></script>
 </html>
