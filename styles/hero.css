@@ -9,14 +9,12 @@
   text-align: center;
   overflow: hidden;
   background-color: #1a1a1a; /* Fallback color */
+  transition: background-size 0.3s ease;
+  background-size: 110% auto; /* Start slightly zoomed */
 }
 
-.hero-bg {
-  transition: transform 0.3s ease;
-}
-
-.hero:hover .hero-bg {
-  transform: scale(1.15);
+.hero:hover {
+  background-size: 115% auto; /* Zoom more on hover */
 }
 
 .hero-content {
@@ -43,11 +41,19 @@
 }
 
 @media (max-width: 768px) {
-  .hero-bg {
-    transform: scale(1.05);
+  .hero {
+    background-size: 105% auto; /* Slightly reduced initial zoom for mobile */
   }
 
-  .hero:hover .hero-bg {
-    transform: scale(1.1);
+  .hero:hover {
+    background-size: 110% auto; /* Reduced hover zoom for mobile */
+  }
+
+  .hero-content h2 {
+    font-size: 3rem;
+  }
+
+  .hero-content p {
+    font-size: 1.4rem;
   }
 }
