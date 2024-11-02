@@ -8,13 +8,30 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
   </head>
   <body>
     <!-- Hero Section -->
-    <section class="hero">
+    <section
+      class="hero"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url('./assets/herobg.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+    >
       <nav class="navbar">
-        <ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-menu">
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#reviews">Reviews</a></li>
@@ -24,8 +41,6 @@
       </nav>
       <div class="hero-content">
         <h2>Alssafir Barber Shop</h2>
-
-        <!-- <h1>Alssafir Barber Shop</h1> -->
         <p>
           Step in for a fresh style, relax in good hands, and leave feeling
           confident.

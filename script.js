@@ -1,91 +1,138 @@
-document.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > window.innerHeight * 0.1) {
-    // Adjust threshold as needed
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-});
+// DOM Elements
+const navbar = document.querySelector(".navbar");
+const navLinks = document.querySelectorAll(".navbar a");
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+const dialog = document.getElementById("bookingDialog");
+const dialogContent = document.querySelector(".dialog-content");
 
-// Add smooth scrolling to all navbar links
-document.querySelectorAll('.navbar a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
+// Navbar Scroll Handler
+function handleNavbarScroll() {
+  const scrollThreshold = window.innerHeight * 0.1;
+  navbar.classList.toggle("scrolled", window.scrollY > scrollThreshold);
+}
 
-    const targetId = this.getAttribute("href");
-    const targetElement = document.querySelector(targetId);
+// Active Section Handler
+function updateActiveSection() {
+  const sections = document.querySelectorAll("section");
+  const scrollPosition = window.scrollY;
 
-    if (targetElement) {
-      const navbarHeight = document.querySelector(".navbar").offsetHeight;
-      const targetPosition = targetElement.offsetTop - navbarHeight;
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 150;
+    const sectionHeight = section.clientHeight;
+    const sectionId = `#${section.getAttribute("id")}`;
 
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
+    if (
+      scrollPosition >= sectionTop &&
+      scrollPosition < sectionTop + sectionHeight
+    ) {
+      navLinks.forEach((link) => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === sectionId
+        );
       });
     }
   });
-});
-
-// Optional: Update active nav link based on scroll position
-window.addEventListener("scroll", function () {
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll(".navbar a");
-
-  let currentSection = "";
-
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 150; // Adjust offset as needed
-    const sectionHeight = section.clientHeight;
-
-    if (
-      window.scrollY >= sectionTop &&
-      window.scrollY < sectionTop + sectionHeight
-    ) {
-      currentSection = "#" + section.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === currentSection) {
-      link.classList.add("active");
-    }
-  });
-});
-
-function openDialog() {
-  const dialog = document.getElementById("bookingDialog");
-  document.body.style.overflow = "hidden"; // Prevent background scrolling
-  dialog.classList.add("active");
 }
 
-function closeDialog() {
-  const dialog = document.getElementById("bookingDialog");
-  document.body.style.overflow = ""; // Restore scrolling
-  dialog.classList.remove("active");
-}
+// Smooth Scroll Handler
+function handleSmoothScroll(e) {
+  e.preventDefault();
+  const targetId = this.getAttribute("href");
+  const targetElement = document.querySelector(targetId);
 
-// Close dialog when clicking outside
-document
-  .getElementById("bookingDialog")
-  .addEventListener("click", function (e) {
-    if (e.target === this) {
-      closeDialog();
+  if (targetElement) {
+    const navbarHeight = navbar.offsetHeight;
+    const targetPosition = targetElement.offsetTop - navbarHeight;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
+
+    // Close mobile menu if open
+    if (navMenu.classList.contains("active")) {
+      toggleMobileMenu();
     }
-  });
-
-// Prevent closing when clicking inside dialog content
-document
-  .querySelector(".dialog-content")
-  .addEventListener("click", function (e) {
-    e.stopPropagation();
-  });
-
-// Close on escape key
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    closeDialog();
   }
+}
+
+// Mobile Menu Handlers
+function toggleMobileMenu() {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+  document.body.style.overflow = navMenu.classList.contains("active")
+    ? "hidden"
+    : "";
+}
+
+// Dialog Handlers
+function handleDialog(action) {
+  dialog.classList.toggle("active", action === "open");
+  document.body.style.overflow = action === "open" ? "hidden" : "";
+}
+
+function handleDialogClick(e) {
+  if (e.target === dialog) {
+    handleDialog("close");
+  }
+}
+
+// Event Listeners
+// Scroll Events
+document.addEventListener("scroll", () => {
+  handleNavbarScroll();
+  updateActiveSection();
+});
+
+// Navigation Events
+navLinks.forEach((link) => {
+  link.addEventListener("click", handleSmoothScroll);
+});
+
+// Mobile Menu Events
+if (hamburger) {
+  hamburger.addEventListener("click", toggleMobileMenu);
+}
+
+// Dialog Events
+window.openDialog = () => handleDialog("open");
+window.closeDialog = () => handleDialog("close");
+
+if (dialog) {
+  dialog.addEventListener("click", handleDialogClick);
+  dialogContent.addEventListener("click", (e) => e.stopPropagation());
+}
+
+// Keyboard Events
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (dialog.classList.contains("active")) {
+      handleDialog("close");
+    }
+    if (navMenu.classList.contains("active")) {
+      toggleMobileMenu();
+    }
+  }
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener("click", (e) => {
+  const isClickInsideMenu = navMenu.contains(e.target);
+  const isClickOnHamburger = hamburger.contains(e.target);
+
+  if (
+    !isClickInsideMenu &&
+    !isClickOnHamburger &&
+    navMenu.classList.contains("active")
+  ) {
+    toggleMobileMenu();
+  }
+});
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  handleNavbarScroll();
+  updateActiveSection();
 });
